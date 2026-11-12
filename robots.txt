@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://divithraju.github.io/sitemap.xml
