@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divith Raju · AI and Data Engineering Solutions</title>
+<meta name="description" content="Team Lead, AI Engineering. GenAI, multi-agent systems, data platforms, MLOps, GPU and HPC. Open-source contributor and GDG technical mentor.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f4;--sf:#fff;--ink:#14202b;--mute:#566574;--line:#d3dae1;--acc:#2f5bff;--acc2:#0f9d7a;--hero:#0e1b2b;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1620;--sf:#15212d;--ink:#e8eef4;--mute:#93a3b3;--line:#263647;--acc:#7b9bff;--acc2:#3dd3a7;--hero:#08111c;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#0e1620;--sf:#15212d;--ink:#e8eef4;--mute:#93a3b3;--line:#263647;--acc:#7b9bff;--acc2:#3dd3a7;--hero:#08111c;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;letter-spacing:-.02em}
+a{color:inherit}:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:5;background:var(--hero);color:#e8eef4}
+nav .wrap{display:flex;align-items:center;gap:20px;height:60px;font-size:15px}
+nav b{font:700 18px "Bricolage Grotesque",sans-serif;margin-right:auto}
+nav a{text-decoration:none;opacity:.8}nav a:hover{opacity:1}
+nav a.c{background:var(--acc);color:#fff;opacity:1;padding:7px 16px;border-radius:8px}
+nav button{background:none;border:1px solid #3a4b5f;color:inherit;border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit;font-size:14px}
+@media(max-width:860px){nav a.l{display:none}}
+section{padding:80px 0 10px}
+h2{font-size:clamp(28px,4vw,42px);margin-bottom:12px}
+.sub{color:var(--mute);max-width:62ch;margin-bottom:32px}
+.hero{background:var(--hero);color:#e8eef4;padding:88px 0 70px;background-image:radial-gradient(circle at 85% 10%,#1d3a66 0,transparent 45%)}
+.hero h1{font-size:clamp(38px,6.5vw,76px);font-weight:800;letter-spacing:-.035em;max-width:16ch}
+.hero p{max-width:60ch;margin:20px 0;color:#b4c2d1;font-size:19px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-block;padding:12px 22px;border-radius:10px;border:1.5px solid currentColor;text-decoration:none;font-weight:500}
+.btn.p{background:var(--acc);border-color:var(--acc);color:#fff}
+.hero .meta{font-size:15px;color:#8ea2b8;margin-top:36px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:-34px;position:relative}
+.stat{background:var(--sf);padding:22px 20px}
+.stat strong{display:block;font:800 36px/1 "Bricolage Grotesque",sans-serif;color:var(--acc);margin-bottom:6px}
+.stat span{color:var(--mute);font-size:14.5px;line-height:1.4;display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:24px}
+.card h3{font-size:21px;margin-bottom:8px}
+.card p{color:var(--mute);font-size:16px}
+.tags,.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tags span,.chips span{font-size:13px;border:1px solid var(--line);border-radius:20px;padding:2px 11px;color:var(--mute)}
+.chips{margin-top:0}.chips span{color:var(--ink);background:var(--bg)}
+.res{color:var(--ink)!important;margin-top:12px;font-weight:500;font-size:15px!important;border-left:3px solid var(--acc2);padding-left:10px}
+/* dashboard */
+.dash{background:var(--sf);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.dtabs{display:flex;gap:4px;padding:10px;border-bottom:1px solid var(--line);background:var(--bg)}
+.dtabs button{border:0;background:none;color:var(--mute);padding:8px 16px;border-radius:8px;cursor:pointer;font:500 15px "IBM Plex Sans",sans-serif}
+.dtabs button[aria-selected=true]{background:var(--sf);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.dbody{padding:24px;display:none}.dbody.on{display:block}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi small{color:var(--mute);display:block;font-size:13px}.kpi b{font:700 24px "Bricolage Grotesque",sans-serif}
+.bars{display:grid;gap:12px}
+.bar{display:grid;grid-template-columns:150px 1fr 56px;gap:12px;align-items:center;font-size:14.5px}
+.bar i{display:block;height:10px;background:var(--bg);border-radius:6px;overflow:hidden}
+.bar i u{display:block;height:100%;width:0;background:var(--acc);border-radius:6px;transition:width .9s}
+.bar.g i u{background:var(--acc2)}
+.note{color:var(--mute);font-size:13.5px;padding:0 24px 18px}
+@media(max-width:560px){.bar{grid-template-columns:100px 1fr 46px}}
+/* arch */
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 6px}
+.flow span{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 12px;font-size:14px}
+.flow em{color:var(--acc);font-style:normal}
+/* timeline */
+.tl{border-left:2px solid var(--line);margin-left:6px}
+.job{position:relative;padding:0 0 30px 28px}
+.job:before{content:"";position:absolute;left:-8px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--acc)}
+.job h3{font-size:21px}.job .m{color:var(--mute);font-size:15px;margin:2px 0 8px}
+.job ul{padding-left:18px;color:var(--mute);font-size:16px}.job li{margin:3px 0}
+#gh{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+#gh .pill{background:var(--sf);border:1px solid var(--line);border-radius:10px;padding:10px 16px;text-decoration:none}
+#gh b{font:700 22px "Bricolage Grotesque",sans-serif;margin-right:6px}
+#repos a{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none}
+#repos a:hover b{color:var(--acc)}#repos span{color:var(--mute);font-size:15px}
+.contact{background:var(--hero);color:#e8eef4;border-radius:18px;padding:44px 32px;margin-top:80px}
+.contact p{color:#b4c2d1;max-width:58ch}
+footer{padding:34px 0 50px;color:var(--mute);font-size:14px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i u{transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Divith Raju</b>
+<a class="l" href="#solutions">Solutions</a><a class="l" href="#dashboard">Dashboard</a><a class="l" href="#product">SaaS product</a><a class="l" href="#experience">Experience</a><a class="l" href="#opensource">Open source</a><a class="l" href="#blog">Blog</a>
+<button id="theme" aria-label="Toggle light or dark theme">Theme</button><a class="c" href="#contact">Contact</a></div></nav>
+
+<header class="hero"><div class="wrap">
+<h1>AI and data platforms that ship to production</h1>
+<p>I’m Divith Raju, Team Lead for AI Engineering. I design GenAI and multi-agent systems, data pipelines, and the GPU and HPC infrastructure they run on, for clients and vendors who need them to work.</p>
+<div class="cta"><a class="btn p" href="#contact">Let’s talk</a><a class="btn" href="#product">See the SaaS product</a></div>
+<div class="meta">Srirangam, Tamil Nadu, India · Team Lead, Tekcogent Solutions · Technical Mentor, Google Developers Group · 22K+ LinkedIn network</div>
+</div></header>
+
+<main class="wrap">
+<div class="stats">
+<div class="stat"><strong>30–35%</strong><span>faster queries from indexing and schema work</span></div>
+<div class="stat"><strong>40%</strong><span>fewer data quality issues</span></div>
+<div class="stat"><strong>99%+</strong><span>uptime on AWS infrastructure</span></div>
+<div class="stat"><strong>10,000+</strong><span>concurrent requests supported</span></div>
+<div class="stat"><strong>15+</strong><span>engineers mentored</span></div>
+<div class="stat"><strong>22K+</strong><span>LinkedIn network</span></div>
+</div>
+
+<section id="solutions">
+<h2>Solutions</h2>
+<p class="sub">Four areas where I take a client from idea to a running, monitored system.</p>
+<div class="grid">
+<div class="card"><h3>GenAI and multi-agent systems</h3><p>RAG pipelines, natural-language-to-SQL, and multi-agent orchestration served through FastAPI microservices, with LLM tracing and evaluation.</p>
+<div class="tags"><span>LangChain</span><span>Multi-agent orchestration</span><span>AWS Bedrock</span><span>Vertex AI</span><span>Langfuse</span><span>PyTorch</span><span>Vector DBs</span><span>MCP</span></div></div>
+<div class="card"><h3>Data engineering</h3><p>Batch and streaming pipelines, data lakes and warehouses, with quality checks and cost control built in.</p>
+<div class="tags"><span>PySpark</span><span>Apache Flink</span><span>Kafka</span><span>dbt</span><span>Airflow</span><span>Snowflake</span><span>BigQuery</span><span>Redshift</span><span>Databricks</span></div></div>
+<div class="card"><h3>GPU and HPC infrastructure</h3><p>Cluster scheduling and parallel storage for training and heavy analytics: Slurm, Lustre and other parallel file systems, RAID, JupyterHub, and GPU workloads.</p>
+<div class="tags"><span>GPU</span><span>Slurm</span><span>Lustre</span><span>Parallel file systems</span><span>JupyterHub</span><span>Linux</span></div></div>
+<div class="card"><h3>Platform, CI/CD and FinOps</h3><p>Containerized microservices on Kubernetes, automated build and release pipelines, and cloud cost tracking for warehouses and AI workloads.</p>
+<div class="tags"><span>CI/CD</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Jenkins</span><span>Grafana</span><span>Prometheus</span><span>FinOps</span></div></div>
+</div>
+</section>
+
+<section id="dashboard">
+<h2>Data engineering and AI dashboards</h2>
+<p class="sub">The two views I build for client teams: pipeline health for data engineers, and model and GPU health for AI teams.</p>
+<div class="dash">
+<div class="dtabs" role="tablist"><button role="tab" aria-selected="true" data-t="d1">Data engineering</button><button role="tab" aria-selected="false" data-t="d2">AI and GPU</button></div>
+<div class="dbody on" id="d1">
+<div class="kpis"><div class="kpi"><small>Pipelines healthy</small><b>47 / 48</b></div><div class="kpi"><small>Records today</small><b>2.4M</b></div><div class="kpi"><small>Data quality pass</small><b>99.2%</b></div><div class="kpi"><small>Warehouse spend vs budget</small><b>−18%</b></div></div>
+<div class="bars">
+<div class="bar"><span>Ingestion (Kafka)</span><i><u data-w="96"></u></i><b>96%</b></div>
+<div class="bar"><span>Streaming (Flink)</span><i><u data-w="91"></u></i><b>91%</b></div>
+<div class="bar"><span>dbt models passing</span><i><u data-w="98"></u></i><b>98%</b></div>
+<div class="bar g"><span>Airflow on-time runs</span><i><u data-w="94"></u></i><b>94%</b></div>
+</div></div>
+<div class="dbody" id="d2">
+<div class="kpis"><div class="kpi"><small>GPU utilization</small><b>82%</b></div><div class="kpi"><small>p95 latency</small><b>1.4 s</b></div><div class="kpi"><small>Cost per 1K requests</small><b>$0.41</b></div><div class="kpi"><small>Eval score</small><b>0.91</b></div></div>
+<div class="bars">
+<div class="bar"><span>GPU nodes busy</span><i><u data-w="82"></u></i><b>82%</b></div>
+<div class="bar"><span>Slurm queue health</span><i><u data-w="88"></u></i><b>88%</b></div>
+<div class="bar g"><span>RAG answer grounded</span><i><u data-w="91"></u></i><b>91%</b></div>
+<div class="bar g"><span>Agent task success</span><i><u data-w="87"></u></i><b>87%</b></div>
+</div></div>
+<p class="note">Sample values for illustration. They show the layout and metrics I deliver, not a live client system.</p>
+</div>
+</section>
+
+<section id="product">
+<h2>SaaS product: AI analytics platform</h2>
+<p class="sub">Ask a question in plain English and get an answer from your database. Built full stack, deployed on AWS.</p>
+<div class="card">
+<div class="flow"><span>Question</span><em>→</em><span>FastAPI + JWT</span><em>→</em><span>LangChain agents</span><em>→</em><span>SQL generation</span><em>→</em><span>Database</span><em>→</em><span>Answer + chart</span></div>
+<p class="res">10,000+ concurrent requests · 99%+ uptime · CI/CD from commit to deploy</p>
+<div class="tags"><span>FastAPI</span><span>LangChain</span><span>JWT</span><span>AWS</span><span>Docker</span><span>Langfuse tracing</span></div>
+</div>
+</section>
+
+<section id="work">
+<h2>Projects</h2>
+<p class="sub">Open-source and client-style builds.</p>
+<div class="grid">
+<div class="card"><h3>friendlyetl</h3><p>Zero-code ETL framework on PyPI with pipeline chaining, deduplication and validation.</p><p class="res">50+ GitHub stars · 50,000+ records per run</p></div>
+<div class="card"><h3>U.S. immigration pipeline</h3><p>PySpark and Hadoop HDFS with a star schema, orchestrated by Apache Airflow.</p></div>
+<div class="card"><h3>Pricing and segmentation engine</h3><p>K-Means customer segments with live Matplotlib dashboards.</p></div>
+<div class="card"><h3>GCP data lake</h3><p>Centralized lake feeding Snowflake and BigQuery, with monitoring and cost optimization.</p></div>
+</div>
+</section>
+
+<section id="experience">
+<h2>Experience and ways of working</h2>
+<p class="sub">I have served multiple clients as a data engineer, and I now lead AI engineering. I work in Agile Scrum sprints with Kanban boards, so vendors and clients see progress every week.</p>
+<div class="tl">
+<div class="job"><h3>Team Lead, AI Engineering</h3><div class="m">Tekcogent Solutions Pvt Ltd · Chennai · May 2026 to present</div><ul><li>Lead the AI engineering team through Scrum sprints and Kanban boards, from requirements to production release.</li><li>Deliver LLM, RAG and multi-agent solutions with FastAPI microservices, CI/CD pipelines and cloud deployment.</li><li>Work directly with clients and vendors to scope work, report progress and keep both sides satisfied.</li><li>Review code, mentor engineers and set standards for testing, tracing and cost control.</li></ul></div>
+<div class="job"><h3>Technical Mentor</h3><div class="m">Google Developers Group · Apr 2024 to Jan 2026</div><ul><li>Mentored 15+ engineers on OOP, data structures and algorithms, and system design.</li><li>Resolved pipeline and data errors for junior data engineers in AWS and GCP big data environments.</li><li>Trained developers on Snowflake, BigQuery, data lake architecture, PySpark, Kafka, Airflow, Docker, Kubernetes, Cassandra, HBase and dbt.</li></ul></div>
+<div class="job"><h3>Data Engineer</h3><div class="m">Google Developers Group · Nov 2022 to Mar 2024 · supported multiple clients</div><ul><li>Designed a scalable GCP data lake for central storage and processing.</li><li>Built ETL/ELT pipelines into Snowflake and BigQuery that raised data availability and cut latency.</li><li>Automated batch and streaming workflows with Cloud Storage, Dataflow, Pub/Sub and Composer.</li><li>Added data quality checks and monitoring, which led to 40% fewer data quality issues.</li><li>Improved query performance by 30–35% with indexing and schema optimization, and lowered Snowflake and BigQuery cost through warehouse and slot management.</li></ul></div>
+<div class="job"><h3>Junior Software Engineer</h3><div class="m">HackerRank · Jul 2021 to Nov 2022</div><ul><li>Designed and optimized SQL queries for large-scale assessment datasets.</li><li>Developed automated ETL scripts in Python and Apache Spark for analytics pipelines.</li></ul></div>
+</div>
+<div class="chips"><span>Agile</span><span>Scrum</span><span>Kanban</span><span>Sprint planning</span><span>Code review</span><span>Client communication</span><span>Mentoring</span></div>
+<p class="sub" style="margin-top:14px">Education: B.Tech, Artificial Intelligence and Data Science, CARE College of Engineering. Recognition: LinkedIn Top Voice, HackerRank SQL Gold and Python Silver, GitHub Pull Shark, PyPI publisher.</p>
+</section>
+
+<section id="opensource">
+<h2>Open source on GitHub</h2>
+<p class="sub">Public projects and contributions, pulled live from GitHub.</p>
+<div id="gh"><div class="pill">Loading GitHub stats…</div></div><div id="repos"></div>
+</section>
+
+<section id="blog">
+<h2>Writing and community</h2>
+<p class="sub">I write about AI and data engineering on Medium, and I’m an active member and technical mentor in the Google Developers Group community.</p>
+<div class="grid">
+<div class="card"><h3>Medium blog</h3><p>Articles on GenAI, RAG, big data and data engineering.</p><div class="cta"><a class="btn p" href="https://medium.com/@divithraju" target="_blank" rel="noopener">Read on Medium</a></div></div>
+<div class="card"><h3>Google Developers Group</h3><p>Member and technical mentor. Google Developer Program profile.</p><div class="cta"><a class="btn" style="border-color:var(--line)" href="https://me.developers.google.com/u/DivithRaju" target="_blank" rel="noopener">View profile</a></div></div>
+<div class="card"><h3>LinkedIn community</h3><p>A network of 22K+ and a LinkedIn Top Voice in data engineering.</p><div class="cta"><a class="btn" style="border-color:var(--line)" href="https://www.linkedin.com/in/divithraju" target="_blank" rel="noopener">Connect</a></div></div>
+<div class="card"><h3>HackerRank</h3><p>SQL Gold and Python Silver badges.</p><div class="cta"><a class="btn" style="border-color:var(--line)" href="https://www.hackerrank.com/profile/divithraju" target="_blank" rel="noopener">View profile</a></div></div>
+</div>
+</section>
+
+<section id="contact"><div class="contact">
+<h2>Ready to build something?</h2>
+<p>Tell me the problem and your timeline. I work with clients and vendors to deliver, and I’m open to AI engineering and data engineering roles.</p>
+<div class="cta"><a class="btn p" href="mailto:divithraju@gmail.com">divithraju@gmail.com</a><a class="btn" href="https://www.linkedin.com/in/divithraju" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="tel:+919043019729">+91 90430 19729</a></div>
+</div></section>
+</main>
+<footer><div class="wrap">© <span id="yr"></span> Divith Raju · Srirangam, Tamil Nadu, India</div></footer>
+
+<script>
+const GITHUB_USER="divithraju";
+document.getElementById("yr").textContent=new Date().getFullYear();
+const root=document.documentElement;
+try{const t=localStorage.getItem("theme");if(t)root.dataset.theme=t}catch(e){}
+document.getElementById("theme").onclick=()=>{const d=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;root.dataset.theme=d?"light":"dark";try{localStorage.setItem("theme",root.dataset.theme)}catch(e){}};
+// dashboard tabs and bars
+const fill=p=>p.querySelectorAll("u").forEach(u=>u.style.width=u.dataset.w+"%");
+document.querySelectorAll(".dtabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".dtabs button").forEach(x=>x.setAttribute("aria-selected",x===b));
+  document.querySelectorAll(".dbody").forEach(d=>d.classList.toggle("on",d.id===b.dataset.t));
+  fill(document.getElementById(b.dataset.t));
+});
+new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){fill(document.getElementById("d1"));o.disconnect()}}).observe(document.getElementById("dashboard"));
+// GitHub live stats
+(async()=>{const gh=document.getElementById("gh"),rp=document.getElementById("repos");
+try{const[u,r]=await Promise.all([fetch(`https://api.github.com/users/${GITHUB_USER}`).then(x=>x.ok?x.json():Promise.reject()),fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`).then(x=>x.ok?x.json():Promise.reject())]);
+const own=r.filter(x=>!x.fork),stars=own.reduce((s,x)=>s+x.stargazers_count,0);
+gh.innerHTML=`<div class="pill"><b>${u.public_repos}</b>public repos</div><div class="pill"><b>${stars}</b>stars earned</div><div class="pill"><b>${u.followers}</b>followers</div><a class="pill" href="${u.html_url}" target="_blank" rel="noopener">View GitHub profile</a>`;
+rp.innerHTML=own.sort((a,b)=>b.stargazers_count-a.stargazers_count).slice(0,5).map(x=>`<a href="${x.html_url}" target="_blank" rel="noopener"><div><b>${x.name}</b><br><span>${x.description||""}</span></div><span>${x.language||""} · ★ ${x.stargazers_count}</span></a>`).join("")
+}catch(e){gh.innerHTML=`<a class="pill" href="https://github.com/${GITHUB_USER}" target="_blank" rel="noopener">See my repositories on GitHub</a>`}})();
+</script>
+</body>
+</html>
