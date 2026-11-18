@@ -92,7 +92,7 @@ footer{padding:36px 0 56px;color:var(--mute);font-size:14px}
 </head>
 <body>
 <nav><div class="wrap"><b>Divith Raju</b>
-<a class="l" href="#cases">Case studies</a><a class="l" href="#projects">Projects</a><a class="l" href="#help">What I work on</a><a class="l" href="#experience">Experience</a><a class="l" href="#github">GitHub</a>
+<a class="l" href="#cases">Case studies</a><a class="l" href="#projects">Projects</a><a class="l" href="#help">What I work on</a><a class="l" href="#experience">Experience</a><a class="l" href="#credentials">Credentials</a><a class="l" href="#github">GitHub</a>
 <button id="theme" aria-label="Toggle light or dark theme">Theme</button><a class="c" href="#contact">Get in touch</a></div></nav>
 
 <header class="hero"><div class="wrap">
@@ -168,6 +168,17 @@ footer{padding:36px 0 56px;color:var(--mute);font-size:14px}
 <p class="sub rv">B.Tech, Artificial Intelligence and Data Science, CARE College of Engineering. LinkedIn Top Voice in data engineering. HackerRank SQL Gold and Python Silver.</p>
 </section>
 
+<section id="credentials">
+<h2 class="rv">Credentials and recognition</h2>
+<p class="sub rv">Learning, writing and community work, with links to the profiles behind them.</p>
+<div class="grid">
+<div class="card rv"><div class="k">Certifications</div><h3>Data, cloud and project management</h3><div class="tags"><span>Microsoft Professional Program in Data Science</span><span>Project Management (Google)</span><span>Google Data Analytics</span><span>Google Cloud Innovators</span><span>Amazon Services</span><span>Zoho Projects</span></div></div>
+<div class="card rv"><div class="k">Recognition</div><h3>Community and coding</h3><div class="tags"><span>LinkedIn Top Voice: Data Engineering, Data Mining, Data Architecture</span><span>HackerRank SQL Gold</span><span>HackerRank Python Silver</span><span>GitHub Pull Shark</span><span>PyPI publisher</span></div></div>
+<div class="card rv"><div class="k">Writing</div><h3>Publications</h3><div class="tags"><span>Big Data, Part 1</span><span>Data Engineering</span><span>Medium technical blog</span></div></div>
+</div>
+<div class="cta rv" style="margin-top:24px"><a class="btn" href="https://www.linkedin.com/in/divithraju/" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="https://www.hackerrank.com/profile/divithraju" target="_blank" rel="noopener">HackerRank</a><a class="btn" href="https://me.developers.google.com/u/DivithRaju" target="_blank" rel="noopener">Google Developer Program</a><a class="btn" href="https://medium.com/@Divithraju" target="_blank" rel="noopener">Medium</a></div>
+</section>
+
 <section id="github">
 <h2 class="rv">Open source on GitHub</h2>
 <p class="sub rv">A live view of my public profile, pulled straight from GitHub.</p>
@@ -196,7 +207,7 @@ document.querySelectorAll(".rv").forEach(el=>io.observe(el));
 (async()=>{const gh=document.getElementById("gh"),rp=document.getElementById("repos");
 try{const[u,r]=await Promise.all([fetch(`https://api.github.com/users/${GITHUB_USER}`).then(x=>x.ok?x.json():Promise.reject()),fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`).then(x=>x.ok?x.json():Promise.reject())]);
 const own=r.filter(x=>!x.fork),stars=own.reduce((s,x)=>s+x.stargazers_count,0);
-gh.innerHTML=`<div class="pill2"><b>${u.public_repos}</b>public repos</div><div class="pill2"><b>${stars}</b>stars on my projects</div><div class="pill2"><b>${u.followers}</b>followers</div><a class="pill2" href="${u.html_url}" target="_blank" rel="noopener">View profile →</a>`;
+gh.innerHTML=`<div class="pill2"><b>${u.public_repos}</b>public repos</div><div class="pill2"><b>${stars}</b>stars on my projects</div><a class="pill2" href="${u.html_url}" target="_blank" rel="noopener">View profile →</a>`;
 rp.innerHTML=own.sort((a,b)=>b.stargazers_count-a.stargazers_count||new Date(b.pushed_at)-new Date(a.pushed_at)).slice(0,6).map(x=>`<a href="${x.html_url}" target="_blank" rel="noopener"><div><b>${x.name}</b><br><span>${x.description||""}</span></div><span>${x.language||""} · ★ ${x.stargazers_count}</span></a>`).join("")
 }catch(e){gh.innerHTML=`<a class="pill2" href="https://github.com/${GITHUB_USER}?tab=repositories" target="_blank" rel="noopener">See all my repositories on GitHub →</a>`}})();
 </script>
